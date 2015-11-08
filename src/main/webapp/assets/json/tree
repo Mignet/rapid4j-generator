@@ -1,0 +1,80 @@
+{
+  "object": {
+    "id": 0,
+    "text": "127.0.0.1",
+    "children": [
+      {
+        "id": 7,
+        "text": "postgres",
+        "children": [
+          {
+            "id": 8,
+            "text": "public",
+            "children": [
+              {
+                "id": 9,
+                "text": "test",
+                "children": [],
+                "checked": false,
+                "url": "/test"
+              },
+              {
+                "id": 10,
+                "text": "test2",
+                "children": [],
+                "checked": false,
+                "url": "/test2"
+              }
+            ],
+            "checked": false,
+            "url": "/public"
+          }
+        ],
+        "checked": false,
+        "url": "postgres"
+      },
+      {
+        "id": 11,
+        "text": "rapid4j",
+        "children": [
+          {
+            "id": 15,
+            "text": "public",
+            "children": [
+              {
+                "id": 12,
+                "text": "t_user",
+                "children": [],
+                "checked": false,
+                "url": "/t_user"
+              },
+              {
+                "id": 13,
+                "text": "t_role",
+                "children": [],
+                "checked": false,
+                "url": "/t_role"
+              },
+              {
+                "id": 14,
+                "text": "t_permission",
+                "children": [],
+                "checked": false,
+                "url": "/t_permission"
+              }
+            ],
+            "checked": false,
+            "url": "/public"
+          }
+        ],
+        "checked": false,
+        "url": "/rapid4j"
+      }
+    ],
+    "checked": false,
+    "url": "localhost"
+  },
+  "type": "success",
+  "msg": "加载完成",
+  "success": true
+}
