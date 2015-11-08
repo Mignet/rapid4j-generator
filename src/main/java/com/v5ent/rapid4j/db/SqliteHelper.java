@@ -8,7 +8,11 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import com.v5ent.rapid4j.db.domain.DbInfo;
-
+/**
+ * 利用Sqlite存储数据,模仿Android的AssetsManager的做法
+ * @author mignet
+ *
+ */
 public class SqliteHelper {
 	public static final String CREATE_TABLE_SONGINFO = "CREATE TABLE IF NOT EXISTS dbinfo ( "
 			+ " id INTEGER PRIMARY KEY   AUTOINCREMENT ,"
