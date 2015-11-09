@@ -1,4 +1,4 @@
-package com.v5ent.rapid4j.db.tree;
+package com.v5ent.rapid4j.db.vo;
 
 import java.util.List;
 

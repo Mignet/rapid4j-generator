@@ -1,4 +1,4 @@
-package com.v5ent.rapid4j.db.domain;
+package com.v5ent.rapid4j.db.vo;
 
 import java.io.Serializable;
 import java.util.List;

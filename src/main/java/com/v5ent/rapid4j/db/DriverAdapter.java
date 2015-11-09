@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.v5ent.rapid4j.db.domain.DbInfo;
-import com.v5ent.rapid4j.db.tree.QTree;
+import com.v5ent.rapid4j.db.vo.QTree;
 
 public class DriverAdapter {
 

@@ -12,10 +12,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.v5ent.rapid4j.db.DriverAdapter;
 import com.v5ent.rapid4j.db.SqliteHelper;
 import com.v5ent.rapid4j.db.domain.DbInfo;
-import com.v5ent.rapid4j.db.domain.JSONResult;
-import com.v5ent.rapid4j.db.domain.Result;
-import com.v5ent.rapid4j.db.tree.QJson;
-import com.v5ent.rapid4j.db.tree.QTree;
+import com.v5ent.rapid4j.db.vo.JSONResult;
+import com.v5ent.rapid4j.db.vo.QJson;
+import com.v5ent.rapid4j.db.vo.QTree;
+import com.v5ent.rapid4j.db.vo.Result;
 
 /**
  * Database
