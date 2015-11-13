@@ -6,7 +6,7 @@
     <artifactId>rapid4j-generator</artifactId>
     <packaging>war</packaging>
     <version>1.0.0</version>
-    <name>rapid4j-generator seed</name>
+    <name>rapid4j-generator</name>
     <url>https://github.com/Mignet/rapid4j-generator</url>
 
     <properties>
@@ -124,7 +124,7 @@
 		<dependency>
 			<groupId>org.xerial</groupId>
 			<artifactId>sqlite-jdbc</artifactId>
-			<version>3.7.2</version>
+			<version>3.8.7</version>
 		</dependency>
 
         <!-- DruidDataSource -->
@@ -301,6 +301,27 @@
         <finalName>rapid4j-generator</finalName>
 
         <plugins>
+			<plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+				<version>2.2</version>
+				<executions>
+					<execution>
+						<id>tomcat-run</id>
+						<goals>
+							<goal>exec-war-only</goal>
+						</goals>
+						<phase>package</phase>
+						<configuration>
+							<path>/standalone</path>
+							<enableNaming>false</enableNaming>
+							<finalName>standalone.jar</finalName>
+							<charset>utf-8</charset>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
             <!--Maven编译插件 配置-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
