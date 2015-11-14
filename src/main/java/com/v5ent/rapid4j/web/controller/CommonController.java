@@ -12,8 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
  **/
 @Controller
 public class CommonController {
+	
     /**
-     * 首页
+     * 连接入口
      * 
      * @param request
      * @return

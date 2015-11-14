@@ -54,7 +54,7 @@
     
     <!-- 首页 -->
     <welcome-file-list>
-        <welcome-file>rest/index</welcome-file>
+        <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
 
     <!-- 错误页 -->
