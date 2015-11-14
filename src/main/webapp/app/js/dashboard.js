@@ -2,7 +2,7 @@ $(document).ready(function(){
       // 普通tree
       $('#treepanel').bstree({url:'rest/db',height:'auto'});
   	$("#btnQuery").bind("click", function() {
-		$.post("/rest/db/quire", {"sql":$("#sql").val()}, function(result) {
+		$.post("/rest/db/inquire", {"sql":$("#sql").val()}, function(result) {
 			if (result.success) {
 				//构造结果表格
 				$("#result").html();

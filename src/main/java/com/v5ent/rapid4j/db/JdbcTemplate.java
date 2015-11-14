@@ -5,7 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class SQLBaseDAO {
+public class JdbcTemplate {
 
 	private Connection connection;
 
@@ -14,7 +14,7 @@ public class SQLBaseDAO {
 	 * 
 	 * @param connection
 	 */
-	public SQLBaseDAO(Connection connection) {
+	public JdbcTemplate(Connection connection) {
 		this.connection = connection;
 	}
 
@@ -139,7 +139,7 @@ public class SQLBaseDAO {
 			}
 		}
 	}
-
+	
 	private void connectionRollback(Connection connection) {
 		try {
 			connection.rollback();

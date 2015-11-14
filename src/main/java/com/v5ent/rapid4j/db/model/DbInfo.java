@@ -1,4 +1,4 @@
-package com.v5ent.rapid4j.db.domain;
+package com.v5ent.rapid4j.db.model;
 
 public class DbInfo {
 

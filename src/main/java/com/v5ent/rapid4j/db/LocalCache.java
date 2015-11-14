@@ -7,13 +7,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import com.v5ent.rapid4j.db.domain.DbInfo;
+import com.v5ent.rapid4j.db.model.DbInfo;
 /**
- * 利用Sqlite存储数据,模仿Android的AssetsManager的做法
+ * 利用Sqlite存储数据<br>
+ * 本地存储数据库连接信息
  * @author mignet
  *
  */
-public class SqliteHelper {
+public class LocalCache {
 	public static final String CREATE_TABLE_SONGINFO = "CREATE TABLE IF NOT EXISTS dbinfo ( "
 			+ " id INTEGER PRIMARY KEY   AUTOINCREMENT ,"
 			+ " dbtype     TEXT      NOT NULL,"
@@ -24,7 +25,7 @@ public class SqliteHelper {
 			+ " password     TEXT      NOT NULL,"
 			+ " isopened int(1) NOT NULL default 0);";  
 	
-	public static Connection initDB(){
+	public static Connection initCache(){
 		try {
 			String url = "jdbc:sqlite:rapid4j.db";
 			Class.forName("org.sqlite.JDBC",true,Thread.currentThread().getContextClassLoader()); 
@@ -44,8 +45,8 @@ public class SqliteHelper {
 		}
 		return null;
 	}
-	public static void cacheDbInfo(DbInfo dbinfo) throws SQLException{
-		Connection conn =  initDB();
+	public static void putDbInfo(DbInfo dbinfo) throws SQLException{
+		Connection conn =  initCache();
 		conn.createStatement().execute("update dbinfo set isopened=0");
 		String sql = "insert into dbinfo (dbtype, dbhost, dbport, dbname, username, password,isopened)values (?, ?, ?, ?, ?, ?, ?);";
 		 PreparedStatement prep =conn.prepareStatement(sql);
@@ -65,7 +66,7 @@ public class SqliteHelper {
 	
 	public static DbInfo getDbInfo() throws SQLException {
 		DbInfo dbinfo = new DbInfo();
-		Connection conn =  initDB();
+		Connection conn =  initCache();
 		 Statement stat = conn.createStatement();
 		ResultSet rs =  stat.executeQuery("select * from dbinfo where isopened=1;"); 
 		if (rs.next()) {

@@ -10,12 +10,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.v5ent.rapid4j.db.DriverAdapter;
-import com.v5ent.rapid4j.db.SqliteHelper;
-import com.v5ent.rapid4j.db.domain.DbInfo;
+import com.v5ent.rapid4j.db.JdbcTemplate;
+import com.v5ent.rapid4j.db.LocalCache;
+import com.v5ent.rapid4j.db.model.DbInfo;
 import com.v5ent.rapid4j.db.vo.JSONResult;
 import com.v5ent.rapid4j.db.vo.QJson;
 import com.v5ent.rapid4j.db.vo.QTree;
 import com.v5ent.rapid4j.db.vo.Result;
+import com.v5ent.rapid4j.web.service.DatabaseService;
 
 /**
  * Database
@@ -56,7 +58,7 @@ public class DatabaseController {
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String login(DbInfo db) {
     	try {
-			SqliteHelper.cacheDbInfo(db);
+    		LocalCache.putDbInfo(db);
 			return "redirect:/rest/dashboard";
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -70,8 +72,8 @@ public class DatabaseController {
     @ResponseBody
     public QJson getTables() {
     	try {
-    		DbInfo db = SqliteHelper.getDbInfo();
-    		List<QTree> tables = DriverAdapter.getTables(db);
+    		DbInfo db = LocalCache.getDbInfo();
+    		List<QTree> tables = DatabaseService.getTables(db);
     		QTree qt = new QTree();
     		qt.setChildren(tables);
     		qt.setId(0);
@@ -87,11 +89,11 @@ public class DatabaseController {
 		}
     }
     
-    @RequestMapping(value = "/quire", method = RequestMethod.POST)
+    @RequestMapping(value = "/inquire", method = RequestMethod.POST)
     @ResponseBody
-    public JSONResult quire(String sql) {
+    public JSONResult inquire(String sql) {
     	try {
-    		List list = DriverAdapter.quire(sql);
+    		List list = DatabaseService.inquire(sql);
     		return new JSONResult(true,"查询成功",list);
     	} catch (SQLException e) {
     		e.printStackTrace();
