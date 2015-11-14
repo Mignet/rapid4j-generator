@@ -29,7 +29,7 @@ public class TestSqlite {
 			System.out.println(url);
 
 			 //2，连接SQLite的JDBC
-			 Class.forName("org.sqlite.JDBC",true,Thread.currentThread().getContextClassLoader()); 
+			 Class.forName("org.sqlite.JDBC").newInstance(); 
 
 			 //建立一个数据库，如果不存在就在当前目录下自动创建
 			 Connection conn = DriverManager.getConnection(url);
