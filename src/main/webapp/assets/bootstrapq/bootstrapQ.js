@@ -308,10 +308,24 @@ $.fn.bstree = function(options){
 bootstrapQ.tree.sub = function(tree, opt){
 	var res = '';
 	if(tree){
-		var res = 
-			'<li>' + 
+		if(tree.children && tree.children.length > 0){
+			if(!opt.open) {
+				res = 
+					'<li>' + 
+					'<a href="javascript:void(0);" data="id:' + tree.id + ';url:' + tree.url + ';">' + 
+					'<span class="glyphicon glyphicon-folder-close"></span>';
+			}else{
+				res = 
+					'<li>' + 
+					'<a href="javascript:void(0);" data="id:' + tree.id + ';url:' + tree.url + ';">' + 
+					'<span class="glyphicon glyphicon-folder-open"></span>';
+			}
+		}else{
+			res = 
+				'<li>' + 
 				'<a href="javascript:void(0);" data="id:' + tree.id + ';url:' + tree.url + ';">' + 
-					'<span class="glyphicon glyphicon-minus"></span>';
+				'<span class="glyphicon glyphicon-leaf"></span>';
+		}
 		if(opt.checkbox){
 			res += '<input type="checkbox" class="treecheckbox" ';
 			if(tree.checked){
@@ -319,7 +333,7 @@ bootstrapQ.tree.sub = function(tree, opt){
 			}
 			res += '/>';
 		}
-			res += tree.text;
+		res += "&nbsp;"+tree.text;
 		if(opt.showurl){
 			res += '(' + tree.url + ')';
 		}
@@ -346,16 +360,16 @@ bootstrapQ.tree.sub = function(tree, opt){
 	return res;
 };
 bootstrapQ.tree.init = function(){
-	qiao.on('#treeul .glyphicon-minus', 'click', function(){
+	qiao.on('#treeul .glyphicon-folder-open', 'click', function(){
 		if($(this).parent().next().length > 0){
 			$('#treeid_' + $(this).parents('a').qdata().id).collapse('hide');
-			$(this).removeClass('glyphicon-minus').addClass('glyphicon-plus');
+			$(this).removeClass('glyphicon-folder-open').addClass('glyphicon-folder-close');
 		}
 	});
-	qiao.on('#treeul .glyphicon-plus', 'click', function(){
+	qiao.on('#treeul .glyphicon-folder-close', 'click', function(){
 		if($(this).parent().next().length > 0){
 			$('#treeid_' + $(this).parents('a').qdata().id).collapse('show');
-			$(this).removeClass('glyphicon-plus').addClass('glyphicon-minus');
+			$(this).removeClass('glyphicon-folder-close').addClass('glyphicon-folder-open');
 		}
 	});
 	qiao.on('input.treecheckbox', 'change', function(){

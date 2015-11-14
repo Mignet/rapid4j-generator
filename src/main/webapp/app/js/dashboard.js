@@ -1,6 +1,6 @@
 $(document).ready(function(){
       // 普通tree
-      $('#treepanel').bstree({url:'rest/db',height:'auto'});
+      $('#treepanel').bstree({url:'rest/db',height:'auto',open:false});
   	$("#btnQuery").bind("click", function() {
 		$.post("/rest/db/inquire", {"sql":$("#sql").val()}, function(result) {
 			if (result.success) {
