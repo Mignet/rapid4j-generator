@@ -7,10 +7,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import com.v5ent.rapid4j.db.model.DbInfo;
+import com.v5ent.rapid4j.model.DbInfo;
 /**
  * 利用Sqlite存储数据<br>
- * 本地存储数据库连接信息
+ * ==存储数据库连接信息
  * @author mignet
  *
  */

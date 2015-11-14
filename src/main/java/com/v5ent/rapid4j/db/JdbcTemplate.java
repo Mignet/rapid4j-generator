@@ -7,7 +7,7 @@ import java.sql.Statement;
 
 public class JdbcTemplate {
 
-	private Connection connection;
+	private Connection connection = null;
 
 	/**
 	 * DAO
@@ -140,6 +140,10 @@ public class JdbcTemplate {
 		}
 	}
 	
+	public ResultSet query(String sql) throws SQLException {
+		return this.connection.createStatement().executeQuery(sql);
+	}
+	
 	private void connectionRollback(Connection connection) {
 		try {
 			connection.rollback();
@@ -148,6 +152,9 @@ public class JdbcTemplate {
 		}
 	}
 
+	/**
+	 * 关闭连接
+	 */
 	public void close() {
 		try {
 			if (connection != null) {
@@ -157,9 +164,5 @@ public class JdbcTemplate {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-	}
-
-	public ResultSet query(String sql) throws SQLException {
-		return this.connection.createStatement().executeQuery(sql);
 	}
 }

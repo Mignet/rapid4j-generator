@@ -9,30 +9,44 @@ import com.v5ent.rapid4j.db.DriverAdapter;
 import com.v5ent.rapid4j.db.JdbcTemplate;
 import com.v5ent.rapid4j.db.LocalCache;
 import com.v5ent.rapid4j.db.RowMapper;
-import com.v5ent.rapid4j.db.model.DbInfo;
 import com.v5ent.rapid4j.db.vo.QTree;
+import com.v5ent.rapid4j.model.DbInfo;
 
 public class DatabaseService {
 
-	public static List inquire(String sql) throws SQLException, ClassNotFoundException {
+	/**
+	 * 通用查询
+	 * @param sql
+	 * @return
+	 * @throws SQLException
+	 * @throws ClassNotFoundException
+	 */
+	public static List<Object> inquire(String sql) throws SQLException, ClassNotFoundException {
 		DbInfo db = LocalCache.getDbInfo();
 		JdbcTemplate dao = new JdbcTemplate(DriverAdapter.getConnection(db));
 		ResultSet rs = dao.query(sql);
+		List<Object> result = RowMapper.convertResultSetToList(rs);
+		rs.close();
 		dao.close();
-		return RowMapper.convertResultSetToList(rs);
+		return result;
 	}
 
 	/**
-	 * getTables ---------MySQL--------- 查询数据库中所有表名 select table_name from
-	 * information_schema.tables where table_schema='csdb' and table_type='base
-	 * table'; 查询指定数据库中指定表的所有字段名column_name 
-	 * select column_name from information_schema.columns where table_schema='csdb' and table_name='users'
-	 *  ---------PostgreSQL--------- 查询数据库中所有表名 SELECT
-	 * tablename FROM pg_tables WHERE tablename NOT LIKE 'pg%' AND tablename NOT
-	 * LIKE 'sql_%'; 
-	 * ②数据库名 SELECT datname FROM pg_database; 
-	 * ③列名 
-	 * select * from information_schema.columns where table_name = 't_user'
+	 * 获取数据库所有的表和字段信息<br>
+	 *  ---------MySQL--------- <br>
+	 *  查询所有数据库名 <br>
+	 *  show databases;<br>
+	 *  查询数据库中所有表名<br>
+	 *  select table_name from information_schema.tables where table_schema='数据库名' and table_type='base table'; <br>
+	 *  查询指定数据库中指定表的所有字段名column_name <br>
+	 *  select column_name from information_schema.columns where table_schema='数据库名' and table_name='表名'<br>
+	 *  ---------PostgreSQL--------- <br>
+	 *  查询所有数据库名 <br>
+	 *  select datname from pg_database; <br>
+	 *  查询数据库中所有表名 <br>
+	 *  select tablename from pg_tables where tablename not like 'pg%' and tablename not like 'sql_%'; <br>
+	 *  查询表的列名<br> 
+	 *  select * from information_schema.columns where table_name = 't_user'<br>
 	 * 
 	 * @return
 	 * @throws SQLException
@@ -44,7 +58,7 @@ public class DatabaseService {
 		String sql_table = "SELECT   tablename   FROM   pg_tables " + "WHERE   tablename   NOT   LIKE   'pg%' "
 				+ "AND tablename NOT LIKE 'sql_%' ";
 		if ("MySQL".equals(db.getDbtype())) {
-			sql_table = "select table_name from information_schema.tables where table_schema='csdb' and table_type='base table'";
+			sql_table = "select table_name as tablename from information_schema.tables where table_schema='"+db.getDbname()+"' and table_type='base table'";
 		}
 		ResultSet rs = dao.query(sql_table);
 		int i = 1;
@@ -55,9 +69,9 @@ public class DatabaseService {
 			qt.setText(tableName);
 			qt.setUrl("table");
 			//columns
-			String sql_columns = "select * from information_schema.columns where table_name = '"+tableName+"'";
+			String sql_columns = "select column_name,udt_name from information_schema.columns where table_name = '"+tableName+"'";
 			if ("MySQL".equals(db.getDbtype())) {
-				sql_columns = "select column_name from information_schema.columns where table_schema='csdb' and table_name='"+tableName+"'";
+				sql_columns = "select column_name,column_type as udt_name from information_schema.columns where table_schema='"+db.getDbname()+"' and table_name='"+tableName+"'";
 			}
 			ResultSet rsc = dao.query(sql_columns);
 			List<QTree> clist = new ArrayList<QTree>();

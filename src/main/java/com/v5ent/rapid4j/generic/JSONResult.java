@@ -1,4 +1,4 @@
-package com.v5ent.rapid4j.db.vo;
+package com.v5ent.rapid4j.generic;
 
 
 /**

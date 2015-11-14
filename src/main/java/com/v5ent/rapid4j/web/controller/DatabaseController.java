@@ -10,13 +10,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.v5ent.rapid4j.db.DriverAdapter;
-import com.v5ent.rapid4j.db.JdbcTemplate;
 import com.v5ent.rapid4j.db.LocalCache;
-import com.v5ent.rapid4j.db.model.DbInfo;
-import com.v5ent.rapid4j.db.vo.JSONResult;
 import com.v5ent.rapid4j.db.vo.QJson;
 import com.v5ent.rapid4j.db.vo.QTree;
-import com.v5ent.rapid4j.db.vo.Result;
+import com.v5ent.rapid4j.generic.JSONResult;
+import com.v5ent.rapid4j.generic.Result;
+import com.v5ent.rapid4j.model.DbInfo;
 import com.v5ent.rapid4j.web.service.DatabaseService;
 
 /**
@@ -93,7 +92,7 @@ public class DatabaseController {
     @ResponseBody
     public JSONResult inquire(String sql) {
     	try {
-    		List list = DatabaseService.inquire(sql);
+    		List<Object> list = DatabaseService.inquire(sql);
     		return new JSONResult(true,"查询成功",list);
     	} catch (SQLException e) {
     		e.printStackTrace();

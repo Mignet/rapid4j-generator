@@ -1,7 +1,6 @@
-package com.v5ent.rapid4j.db.vo;
+package com.v5ent.rapid4j.generic;
 
 import java.io.Serializable;
-import java.util.List;
 
 /**
  * Result : 响应的结果对象

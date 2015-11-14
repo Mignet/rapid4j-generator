@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-import com.v5ent.rapid4j.db.model.DbInfo;
+import com.v5ent.rapid4j.model.DbInfo;
 
 public class DriverAdapter {
 
