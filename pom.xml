@@ -18,7 +18,6 @@
 
         <!-- plugin versions -->
         <plugin.maven-compiler>3.1</plugin.maven-compiler>
-        <plugin.jetty.version>8.1.16.v20140903</plugin.jetty.version>
 
         <!-- lib versions -->
         <junit.version>4.11</junit.version>
@@ -301,6 +300,7 @@
         <finalName>rapid4j-generator</finalName>
 		
         <plugins>
+        	<!--  tomcat runner-->
 			<!-- <plugin>
 				<groupId>org.apache.tomcat.maven</groupId>
 				<artifactId>tomcat7-maven-plugin</artifactId>
@@ -321,7 +321,8 @@
 					</execution>
 				</executions>
 			</plugin> -->
-			<!-- jetty standalone runner -->
+			<!-- jetty runner -->
+			<!-- 本版本runner需要jdk1.7及以上支持 -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-dependency-plugin</artifactId>
@@ -357,29 +358,6 @@
                     <encoding>${project.build.sourceEncoding}</encoding>
                 </configuration>
             </plugin>
-
-            <!-- mvn jetty:run -->
-			<plugin>
-				<!-- http://wiki.eclipse.org/Jetty/Feature/Jetty_Maven_Plugin -->
-				<groupId>org.mortbay.jetty</groupId>
-				<artifactId>jetty-maven-plugin</artifactId>
-				<version>${plugin.jetty.version}</version>
-				<configuration>
-					<stopPort>9966</stopPort>
-					<stopKey>foo</stopKey>
-					<scanIntervalSeconds>0</scanIntervalSeconds>
-					<connectors>
-						<connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
-							<port>8888</port>
-							<maxIdleTime>60000</maxIdleTime>
-						</connector>
-					</connectors>
-					<webAppConfig>
-						<allowDuplicateFragmentNames>true</allowDuplicateFragmentNames>
-						<contextPath>/</contextPath>
-					</webAppConfig>
-				</configuration>
-			</plugin>
 
         </plugins>
 
