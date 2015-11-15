@@ -1,5 +1,5 @@
 # Rapid4j-Generator
-My Java Code Generator for Rapid4J[https://github.com/Mignet/rapid4j](https://github.com/Mignet/rapid4j).
+My Java Code Generator for [Rapid4J](https://github.com/Mignet/rapid4j).
 ---
 ## QuickStart
 > 1. download code,`git clone https://github.com/Mignet/rapid4j-generator`
