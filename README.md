@@ -8,7 +8,6 @@ My Java Code Generator for [Rapid4J](https://github.com/Mignet/rapid4j).
 > 4. open link http://localhost:9090
 
 ## Snapshot
-![select database](http://images.cnblogs.com/cnblogs_com/mignet/756601/o_dbms1.png)
 ![use database](http://images.cnblogs.com/cnblogs_com/mignet/756601/o_dbms.png)
 
 ## RoadMap
