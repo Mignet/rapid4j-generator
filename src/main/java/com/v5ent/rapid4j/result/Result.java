@@ -1,4 +1,4 @@
-package com.v5ent.rapid4j.generic;
+package com.v5ent.rapid4j.result;
 
 import java.io.Serializable;
 

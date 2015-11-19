@@ -13,9 +13,9 @@ import com.v5ent.rapid4j.cache.sqlite.SqliteCache;
 import com.v5ent.rapid4j.db.DriverAdapter;
 import com.v5ent.rapid4j.db.vo.QJson;
 import com.v5ent.rapid4j.db.vo.QTree;
-import com.v5ent.rapid4j.generic.JSONResult;
-import com.v5ent.rapid4j.generic.Result;
 import com.v5ent.rapid4j.model.DbInfo;
+import com.v5ent.rapid4j.result.JSONResult;
+import com.v5ent.rapid4j.result.Result;
 import com.v5ent.rapid4j.web.service.DatabaseService;
 
 /**
