@@ -5,9 +5,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.v5ent.rapid4j.cache.sqlite.SqliteCache;
 import com.v5ent.rapid4j.db.DriverAdapter;
 import com.v5ent.rapid4j.db.JdbcTemplate;
-import com.v5ent.rapid4j.db.LocalCache;
 import com.v5ent.rapid4j.db.RowMapper;
 import com.v5ent.rapid4j.db.vo.QTree;
 import com.v5ent.rapid4j.model.DbInfo;
@@ -22,7 +22,7 @@ public class DatabaseService {
 	 * @throws ClassNotFoundException
 	 */
 	public static List<Object> inquire(String sql) throws SQLException, ClassNotFoundException {
-		DbInfo db = LocalCache.getDbInfo();
+		DbInfo db = SqliteCache.getDbInfo();
 		JdbcTemplate dao = new JdbcTemplate(DriverAdapter.getConnection(db));
 		ResultSet rs = dao.query(sql);
 		List<Object> result = RowMapper.convertResultSetToList(rs);

@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.v5ent.rapid4j.cache.sqlite.SqliteCache;
 import com.v5ent.rapid4j.db.DriverAdapter;
-import com.v5ent.rapid4j.db.LocalCache;
 import com.v5ent.rapid4j.db.vo.QJson;
 import com.v5ent.rapid4j.db.vo.QTree;
 import com.v5ent.rapid4j.generic.JSONResult;
@@ -57,7 +57,7 @@ public class DatabaseController {
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String login(DbInfo db) {
     	try {
-    		LocalCache.putDbInfo(db);
+    		SqliteCache.putDbInfo(db);
 			return "redirect:/rest/dashboard";
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -71,7 +71,7 @@ public class DatabaseController {
     @ResponseBody
     public QJson getTables() {
     	try {
-    		DbInfo db = LocalCache.getDbInfo();
+    		DbInfo db = SqliteCache.getDbInfo();
     		List<QTree> tables = DatabaseService.getTables(db);
     		QTree qt = new QTree();
     		qt.setChildren(tables);

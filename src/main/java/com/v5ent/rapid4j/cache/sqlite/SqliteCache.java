@@ -1,4 +1,4 @@
-package com.v5ent.rapid4j.db;
+package com.v5ent.rapid4j.cache.sqlite;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -14,7 +14,7 @@ import com.v5ent.rapid4j.model.DbInfo;
  * @author mignet
  *
  */
-public class LocalCache {
+public class SqliteCache {
 	public static final String CREATE_TABLE_SONGINFO = "CREATE TABLE IF NOT EXISTS dbinfo ( "
 			+ " id INTEGER PRIMARY KEY   AUTOINCREMENT ,"
 			+ " dbtype     TEXT      NOT NULL,"
