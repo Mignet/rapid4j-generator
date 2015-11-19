@@ -10,7 +10,7 @@ import java.sql.Statement;
 import com.v5ent.rapid4j.model.DbInfo;
 /**
  * 利用Sqlite存储数据<br>
- * ==存储数据库连接信息
+ * 这里专门用于存储数据库连接信息
  * @author mignet
  *
  */
