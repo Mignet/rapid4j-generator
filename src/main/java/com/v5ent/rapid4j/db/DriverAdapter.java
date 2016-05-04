@@ -20,8 +20,7 @@ public class DriverAdapter {
 			} else if ("PostgreSQL".equals(db.getDbtype())) {
 				Class.forName("org.postgresql.Driver").newInstance();
 				conn = DriverManager.getConnection(
-						"jdbc:postgresql://" + db.getDbhost() + ":" + db.getDbport() + "/" + db.getDbname()
-								+ "?useUnicode=true&characterEncoding=UTF-8&loginTimeout=10&socketTimeout=180",
+						"jdbc:postgresql://" + db.getDbhost() + ":" + db.getDbport() + "/" + db.getDbname()+"?characterEncoding=UTF-8",
 						db.getUsername(), db.getPassword());
 			} else if ("SQLite".equals(db.getDbtype())) {
 				// jdbc:sqlite:dbPath/dbname.db
